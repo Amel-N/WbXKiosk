@@ -17,6 +17,7 @@
             height: 100vh;
             margin: 0;
             background-color: #f9f9f9; /* Light background for better visibility */
+            position: relative; /* Allow positioning of the back button */
         }
         .options {
             display: flex;
@@ -55,6 +56,22 @@
             font-size: 20px; /* Set font size for labels */
             color: white; /* Set label color to white */
         }
+        .back-button {
+            position: absolute; /* Position the back button */
+            bottom: 20px; /* Space from the bottom */
+            left: 50px; /* Adjust space from the left to move towards the middle */
+            background-color: #add8e6; /* Light blue background for back button */
+            color: black; /* Black text color for contrast */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding for size */
+            font-size: 18px; /* Font size */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        .back-button:hover {
+            background-color: #87ceeb; /* Slightly darker blue on hover */
+        }
     </style>
 </head>
 <body x-data="{ call(service) { window.location.href = 'sip:' + service } }">
@@ -77,6 +94,8 @@
                 <div class="label">Shipping/Receiving</div> <!-- Label under the button -->
             </div>
         </div>
+        <!-- Back button positioned in the bottom left corner -->
+        <button class="back-button" onclick="window.location.href='index.html'">Back</button>
     </main>
 </body>
 </html>
