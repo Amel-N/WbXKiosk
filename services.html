@@ -2,51 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiosk</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Updated to point to your CSS folder -->
-    <script src="js/main.js" defer></script> <!-- Updated to point to your main.js -->
+    <title>Choose Your Option</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/@webex/webex/dist/webex.min.js"></script>
+    <script src="js/callLogic.js" defer></script> <!-- JavaScript for calling logic -->
     <script src="js/alpine.js" defer></script> <!-- Updated to point to your alpine.js -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9; /* Light background for better visibility */
+        }
+        .options {
+            display: flex;
+            justify-content: center; /* Center the buttons horizontally */
+            gap: 60px; /* Space between buttons */
+        }
+        .option {
+            display: flex;
+            flex-direction: column; /* Stack image and label vertically */
+            align-items: center; /* Center image and label */
+            text-align: center; /* Center text for labels */
+        }
+        .button {
+            width: 150px; /* Set width for the circular button */
+            height: 150px; /* Set height for the circular button */
+            border-radius: 50%; /* Make it circular */
+            border: none; /* Remove border */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff; /* Blue background for buttons */
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        .button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .button img {
+            width: 100%; /* Make image fill the button width */
+            height: 100%; /* Make image fill the button height */
+            object-fit: cover; /* Ensure the image covers the button */
+            border-radius: 50%; /* Keep the image circular */
+        }
+        .label {
+            margin-top: 10px; /* Space between button and label */
+            font-size: 20px; /* Set font size for labels */
+            color: white; /* Set label color to white */
+        }
+    </style>
 </head>
-<body x-data="{ page, services, language, languages } = $store.model">
-    <div class="home-screen" x-show="page === 'home'" style="display: none;">
-        <h1>Webex Bank</h1>
-        <h2 @click="page = 'service'" class="touch-to-start">Touch to start</h2>
-        <div class="languages">
-            <template x-for="current in languages">
-                <div class="language" x-text="current" @click="language = current" :class="language === current && 'selected'"></div>
-            </template>
-            <div class="language selected" x-text="current" @click="language = current" :class="language === current && 'selected'">english</div>
-            <div class="language" x-text="current" @click="language = current" :class="language === current && 'selected'">norwegian</div>
+<body x-data="{ call(service) { window.location.href = 'sip:' + service } }">
+    <header>
+        <h1>Choose Your Option</h1>
+    </header>
+    
+    <main>
+        <div class="options">
+            <div class="option">
+                <button class="button" @click="call('amel.nukicic@ignitetechnology.com')">
+                    <img src="images/reception.jpg" alt="Reception">
+                </button>
+                <div class="label">Reception</div> <!-- Label under the button -->
+            </div>
+            <div class="option">
+                <button class="button" @click="call('amel.nukicic@ignitetechnology.com')">
+                    <img src="images/shipping.jpg" alt="Shipping/Receiving">
+                </button>
+                <div class="label">Shipping/Receiving</div> <!-- Label under the button -->
+            </div>
         </div>
-    </div>
-
-    <div class="service" x-show="page === 'service'" style="">
-        <h2>Choose Your Service</h2>
-        <div class="row">
-            <template x-for="service in services">
-                <a class="service" x-bind:href="'sip:'+ service.url" :class="service.name">
-                    <div class="avatar"></div>
-                    <label x-text="service.name"></label>
-                </a>
-            </template>
-            <a class="service Loan" x-bind:href="'sip:'+ service.url" :class="service.name" href="sip:erica.talking@ivr.vc">
-                <div class="avatar"></div>
-                <label x-text="service.name">Loan</label>
-            </a>
-            <a class="service Advice" x-bind:href="'sip:'+ service.url" :class="service.name" href="sip:erica.talking@ivr.vc">
-                <div class="avatar"></div>
-                <label x-text="service.name">Advice</label>
-            </a>
-            <a class="service Credit" x-bind:href="'sip:'+ service.url" :class="service.name" href="sip:erica.talking@ivr.vc">
-                <div class="avatar"></div>
-                <label x-text="service.name">Credit</label>
-            </a>
-        </div>
-        <button @click="page = 'home'" class="back">Back</button>
-    </div>
-
-    <scribe-shadow id="crxjs-ext" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible; visibility: visible;"></scribe-shadow>
+    </main>
 </body>
 </html>
