@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosk</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Updated to point to your CSS folder -->
+    <script src="js/main.js" defer></script> <!-- Updated to point to your main.js -->
+    <script src="js/alpine.js" defer></script> <!-- Updated to point to your alpine.js -->
+</head>
+<body x-data="{ page, services, language, languages } = $store.model">
+    <div class="home-screen" x-show="page === 'home'" style="display: none;">
+        <h1>Webex Bank</h1>
+        <h2 @click="page = 'service'" class="touch-to-start">Touch to start</h2>
+        <div class="languages">
+            <template x-for="current in languages">
+                <div class="language" x-text="current" @click="language = current" :class="language === current && 'selected'"></div>
+            </template>
+            <div class="language selected" x-text="current" @click="language = current" :class="language === current && 'selected'">english</div>
+            <div class="language" x-text="current" @click="language = current" :class="language === current && 'selected'">norwegian</div>
+        </div>
+    </div>
+
+    <div class="service" x-show="page === 'service'" style="">
+        <h2>Choose Your Service</h2>
+        <div class="row">
+            <template x-for="service in services">
+                <a class="service" x-bind:href="'sip:'+ service.url" :class="service.name">
+                    <div class="avatar"></div>
+                    <label x-text="service.name"></label>
+                </a>
+            </template>
+            <a class="service Loan" x-bind:href="'sip:'+ service.url" :class="service.name" href="sip:erica.talking@ivr.vc">
+                <div class="avatar"></div>
+                <label x-text="service.name">Loan</label>
+            </a>
+            <a class="service Advice" x-bind:href="'sip:'+ service.url" :class="service.name" href="sip:erica.talking@ivr.vc">
+                <div class="avatar"></div>
+                <label x-text="service.name">Advice</label>
+            </a>
+            <a class="service Credit" x-bind:href="'sip:'+ service.url" :class="service.name" href="sip:erica.talking@ivr.vc">
+                <div class="avatar"></div>
+                <label x-text="service.name">Credit</label>
+            </a>
+        </div>
+        <button @click="page = 'home'" class="back">Back</button>
+    </div>
+
+    <scribe-shadow id="crxjs-ext" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible; visibility: visible;"></scribe-shadow>
+</body>
+</html>

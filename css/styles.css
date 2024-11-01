@@ -1,0 +1,68 @@
+/* css/styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-align: center;
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0.5em 0;
+}
+
+.need-help {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.start a {
+    font-size: 2.5em;
+    color: #00ccff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.start p {
+    font-size: 1.2em;
+    margin-top: 0.2em;
+}
+
+/* Styles for the service options page */
+.options {
+    display: flex;
+    gap: 30px;                   /* Space between option buttons */
+    margin-top: 20px;           /* Add margin above the options */
+}
+
+.option {
+    text-align: center;          /* Center text under images */
+}
+
+.option img {
+    width: 120px;                /* Set width of images */
+    height: 120px;               /* Set height of images */
+    border-radius: 50%;          /* Makes the image circular */
+    object-fit: cover;           /* Ensures image fills the circle */
+    cursor: pointer;             /* Changes cursor to pointer on hover */
+    transition: transform 0.3s;  /* Adds transition for hover effect */
+}
+
+.option img:hover {
+    transform: scale(1.1);       /* Slightly enlarges image on hover */
+}
+
+.option p {
+    font-size: 1.2em;            /* Font size for option labels */
+    color: #ffffff;              /* Text color */
+    margin-top: 0.5em;           /* Margin above labels */
+}
