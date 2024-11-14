@@ -4,7 +4,7 @@ function setup() {
   Alpine.store('model', {
     currentPage: 'home', // 'home', 'service'
     currentLanguage: 'english',
-    dialNumber: '9102',
+    dialNumber: '8888',
     services: [],
 
     init() {
@@ -37,4 +37,6 @@ function setup() {
 }
 
 document.addEventListener('alpine:init', setup);
+
+
 
