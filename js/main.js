@@ -4,7 +4,7 @@ function setup() {
   Alpine.store('model', {
     currentPage: 'home', // 'home', 'service'
     currentLanguage: 'english',
-    dialNumber: 'amel.nukicic@ignitetechnology.com',
+    dialNumber: '9102',
     services: [],
 
     init() {
